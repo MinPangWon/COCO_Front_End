@@ -82,8 +82,10 @@ import { Board } from "./components/Board/Board";
 import { BoardDetail } from "./components/Board/BoardDetail/BoardDetail";
 import { WriteGeul } from "./components/Board/WriteGeul/WriteGuel";
 import { StatusList } from "./components/StatusList/StatusList";
+import { MyPage } from "./components/MyPage/MyPage";
 
 function App() {
+  /* 토큰이 유효하지 않으면 토큰 초기화*/
   const dispatch = useAppDispatch();
   const userInfo = useAppSelector((state) => state.loginState);
   if (!checkToken(userInfo.access_token)) {
@@ -91,6 +93,7 @@ function App() {
       type: "loginSlice/logout",
     });
   }
+  /* --------------------------------------- */
   return (
     <Router>
       <div className="App">
@@ -109,6 +112,7 @@ function App() {
           />
           <Route path="/board" element={<Board />} />
           <Route path="/board/:id" element={<BoardDetail />} />
+          <Route path="/mypage/:id" element={<MyPage />} />
           <Route path="/manage" element={<Manage />} />
           <Route
             path="/write"
